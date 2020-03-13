@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "441287581712",
+    "firebase_url": "https://loginui-e9fe7.firebaseio.com",
+    "project_id": "loginui-e9fe7",
+    "storage_bucket": "loginui-e9fe7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441287581712:android:71b30275221a8df11f2a95",
+        "android_client_info": {
+          "package_name": "com.example.kindi.bhatflutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441287581712-1l8pm0om5nab8ab44u1et6kbhpemh6g0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kindi.bhatflutter_app",
+            "certificate_hash": "dd3c4fb528cd445193bbd3ad4fe57f328aac54bc"
+          }
+        },
+        {
+          "client_id": "441287581712-hjabu9ne6df4iuvoders680bnlp2ofgm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAx6KTlmdr8NVyk_qTJnJjfSot3nohs8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441287581712-hjabu9ne6df4iuvoders680bnlp2ofgm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
