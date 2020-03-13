@@ -100,14 +100,59 @@ class HomePage extends StatelessWidget {
   }
 }
 class LoginScreen extends StatelessWidget {
+  final _emailController=TextEditingController();
+  final _passController=TextEditingController();
+  Future<FirebaseUser> login(String email,String pass) async{
+    try
+    {
+      FirebaseAuth _auth = FirebaseAuth.instance;
+      AuthResult result= await _auth.signInWithEmailAndPassword(email: email, password: pass);
+      FirebaseUser user=result.user;
+      return user;
+    }catch(e) {
+      print(e);
+      return null;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Belcome Kindi!'),
       ),
-      body: Center(child: Text('Belcome lil kindi 😁'),),
-    )
+      body: Form(
+        child: Column(
+          children: <Widget>
+          [
+            SizedBox(height: 16,),
+            TextFormField(
+              decoration: InputDecoration(
+                  labelText: 'Email'
+              ),
+              controller: _emailController,
+            ),
+            SizedBox(height: 16,),
+            TextFormField(
+              decoration: InputDecoration(
+                  labelText: 'Password'
+              ),
+              controller: _passController,
+            ),
+            SizedBox(height: 16,),
+            Container(
+              width: double.infinity,
+              child: RaisedButton(
+                color: Colors.blue,
+                child: Text('Register',style: TextStyle(color: Colors.white),),
+                onPressed: ()  {
+
+                },
+              ),
+            )
+          ],
+        ),
+      )
+    );
   }
 }
 
