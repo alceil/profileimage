@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bhatflutter_app/HomeScreen.dart';
 void main() => runApp(MaterialApp(
-  home: HomePage(),
+  home: mobLogin(),
 ));
 class HomePage extends StatelessWidget {
   final _emailController=TextEditingController();
@@ -164,6 +164,50 @@ class LoginScreen extends StatelessWidget {
           ],
         ),
       )
+    );
+  }
+}
+class mobLogin extends StatelessWidget {
+  Future<bool> loginUser()  async{
+
+  }
+ final _mobno=TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            padding: EdgeInsets.all(30),
+            child: Form(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>
+                [
+                  Text('Login',style: TextStyle(color:Colors.blue,fontSize: 30),),
+                  SizedBox(height: 16,),
+                  TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Mobile number',
+                    ),
+                    controller: _mobno,
+                  ),
+                  SizedBox(height: 16,),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(10),
+                    child: FlatButton(onPressed: (){},child: Text('Login',style: TextStyle(color: Colors.white),),color: Colors.blue,),
+
+                  )
+
+                ],
+
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
