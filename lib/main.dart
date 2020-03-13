@@ -145,6 +145,7 @@ class LoginScreen extends StatelessWidget {
                 color: Colors.blue,
                 child: Text('Register',style: TextStyle(color: Colors.white),),
                 onPressed: ()  {
+                  final email=_emailController.text.toString().trim();
 
                 },
               ),
