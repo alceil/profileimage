@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:bhatflutter_app/HomeScreen.dart';
 void main() => runApp(MaterialApp(
   home: HomePage(),
 ));
@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
                   FirebaseUser user=await login(email, pass);
                   if(user!=null)
                     {
-                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen(name:user.displayName,url:user.photoUrl)));
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen(name:user.displayName, imageUrl:user.photoUrl)));
 
                     }
                   else
@@ -167,15 +167,5 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-class HomeScreen extends StatelessWidget {
-  final name;
-  final imageurl;
-  HomeScreen(this._name,this._imageurl);
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 
 
