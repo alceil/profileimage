@@ -144,8 +144,19 @@ class LoginScreen extends StatelessWidget {
               child: RaisedButton(
                 color: Colors.blue,
                 child: Text('Register',style: TextStyle(color: Colors.white),),
-                onPressed: ()  {
+                onPressed: ()  async {
                   final email=_emailController.text.toString().trim();
+                  final pass=_passController.text.toString().trim();
+                  FirebaseUser user=await login(email, pass);
+                  if(user!=null)
+                    {
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen(name:user.displayName,url:user.photoUrl)));
+
+                    }
+                  else
+                    {
+                      print('error');
+                    }
 
                 },
               ),
@@ -154,6 +165,15 @@ class LoginScreen extends StatelessWidget {
         ),
       )
     );
+  }
+}
+class HomeScreen extends StatelessWidget {
+  final name;
+  final imageurl;
+  HomeScreen(this._name,this._imageurl);
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
