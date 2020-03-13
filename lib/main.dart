@@ -169,6 +169,13 @@ class LoginScreen extends StatelessWidget {
 }
 class mobLogin extends StatelessWidget {
   Future<bool> loginUser()  async{
+    FirebaseAuth _auth= FirebaseAuth.instance;
+    _auth.verifyPhoneNumber(phoneNumber: null,
+        timeout: null,
+        verificationCompleted: null,
+        verificationFailed: null,
+        codeSent: null,
+        codeAutoRetrievalTimeout: null);
 
   }
  final _mobno=TextEditingController();
