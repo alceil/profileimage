@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   final  name;
   final  imageUrl;
-  HomeScreen({this.name,this.imageUrl});
+  final user;
+  HomeScreen({this.name,this.imageUrl,this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

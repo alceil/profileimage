@@ -168,17 +168,77 @@ class LoginScreen extends StatelessWidget {
   }
 }
 class mobLogin extends StatelessWidget {
-  Future<bool> loginUser()  async{
+  Future<bool> loginUser(String phone,BuildContext context)  async{
     FirebaseAuth _auth= FirebaseAuth.instance;
-    _auth.verifyPhoneNumber(phoneNumber: null,
-        timeout: null,
-        verificationCompleted: null,
-        verificationFailed: null,
-        codeSent: null,
+    _auth.verifyPhoneNumber(phoneNumber: phone,
+        timeout: Duration(seconds: 60),
+        verificationCompleted: (AuthCredential credential) async
+        {
+          Navigator.of(context).pop();
+          AuthResult result= await _auth.signInWithCredential(credential);
+          FirebaseUser user=result.user;
+          if(user!=null)
+            {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>(HomeScreen(user: user,))));
+            }
+          else
+            {
+
+            }
+        },
+        verificationFailed: (AuthException exeption)
+        {
+          print(exeption);
+        },
+        codeSent: (String verificationId,[int forceResendingToken])
+        {
+          showDialog(context: context,barrierDismissible:false,builder: (context)
+          {
+            return AlertDialog(title: Text('Give the code?'),
+            content: Column
+              (
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>
+              [
+                TextField
+                  (
+                  controller: _codeController,
+
+                )
+
+
+              ],
+
+
+              ),
+              actions: <Widget>
+              [
+              FlatButton(child: Text('Confirm'),textColor:Colors.white,onPressed: ()  async
+              {
+                AuthCredential credential= PhoneAuthProvider.getCredential(verificationId: verificationId, smsCode: _codeController.text);
+                AuthResult result= await _auth.signInWithCredential(credential);
+                FirebaseUser user=result.user;
+                if(user!=null)
+                  {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>(HomeScreen(user: user,))));
+                  }
+                else
+                  {
+
+                  }
+              },)
+
+              ],
+            );
+
+          }
+          );
+        },
         codeAutoRetrievalTimeout: null);
 
   }
  final _mobno=TextEditingController();
+  final _codeController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,7 +264,10 @@ class mobLogin extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(10),
-                    child: FlatButton(onPressed: (){},child: Text('Login',style: TextStyle(color: Colors.white),),color: Colors.blue,),
+                    child: FlatButton(onPressed: (){
+                      final phone=_mobno.text.trim();
+                      loginUser(phone, context);
+                    },child: Text('Login',style: TextStyle(color: Colors.white),),color: Colors.blue,),
 
                   )
 
