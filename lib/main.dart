@@ -1,6 +1,6 @@
-
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 void main()=>runApp(MaterialApp(
@@ -12,29 +12,46 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _imageurl;
   File _image;
-  Future getImage() async
-  {
-    final image= await ImagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image=image;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('HomePage'),
+    return Scaffold
+      (
+      body: Container(
+        child:Column(
+          children: <Widget>
+          [
+            SizedBox(height: 64,),
+            _imageurl!=null?
+            CircleAvatar(
+              child: ClipOval(
+                child: Image.network(_imageurl),
+              ),
+              radius: 100,
+            ):
+            CircleAvatar(
+              child: ClipOval(
+                child: Icon(Icons.person,size: 100,),
+              ),
+              radius: 100,
+            )    ,
+            SizedBox(height: 16,),
+            FlatButton(onPressed: ()
+            {
+              _image=ImagePicker.pickImage(source: ImageSource.gallery);
+              
+            },
+              child: Text('Change Image'),
+            )
+            
+            
+            
+          ],
+        ),
       ),
-      body: Center(
-        child:_image==null?Text('Image is not loaded'):Image.file(_image),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        tooltip: 'Increment',
-        child: Icon(Icons.camera_alt),
-      ),
-    );
+      
+      );
   }
 }
+
