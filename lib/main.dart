@@ -16,7 +16,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Future getImage() async
   {
     final image= await ImagePicker.pickImage(source: ImageSource.camera);
-
+    setState(() {
+      _image=image;
+    });
   }
 
   @override
