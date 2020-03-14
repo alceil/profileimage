@@ -27,6 +27,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('HomePage'),
       ),
+      body: Center(
+        child:_image==null?Text('Image is not loaded'):Image.file(_image),
+      ),
 
     );
   }
