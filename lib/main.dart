@@ -6,3 +6,28 @@ import 'package:image_picker/image_picker.dart';
 void main()=>runApp(MaterialApp(
     home: MyHomePage(),
     ));
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  File _image;
+  Future getImage() async
+  {
+    final image= await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image=image;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('HomePage'),
+      ),
+
+    );
+  }
+}
