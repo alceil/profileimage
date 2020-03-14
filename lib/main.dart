@@ -30,7 +30,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child:_image==null?Text('Image is not loaded'):Image.file(_image),
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: getImage,
+        tooltip: 'Increment',
+        child: Icon(Icons.camera_alt),
+      ),
     );
   }
 }
